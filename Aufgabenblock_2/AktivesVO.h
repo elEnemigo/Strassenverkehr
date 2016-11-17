@@ -4,6 +4,8 @@
 #include <iomanip>
 #include <sstream>
 
+#define EPS 0.000001
+
 class AktivesVO
 {
 private:

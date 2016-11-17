@@ -58,6 +58,7 @@ void Fahrzeug::vNeueStrecke(Weg* pWeg)
 {
 	if (p_pVerhalten)
 		delete p_pVerhalten;
+	p_dAbschnittStrecke = 0.0;
 
 	p_pVerhalten = new FzgFahren(pWeg);
 	pWeg->vAnnahme(this);
@@ -106,7 +107,7 @@ void Fahrzeug::vAbfertigung()
 	double dRestStrecke;
 
 	if (p_pVerhalten->pGetWeg()->dGetLaenge() <= p_dAbschnittStrecke)
-		exit(1);
+		throw Streckenende(this, p_pVerhalten->pGetWeg());//exit(1);
 
 	dVergangeneZeit = dGlobaleZeit - p_dZeit;
 	dRestStrecke = p_pVerhalten->dStrecke(this, dVergangeneZeit);
@@ -118,6 +119,11 @@ void Fahrzeug::vAbfertigung()
 	p_dAbschnittStrecke += dRestStrecke;
 	p_dGesamtZeit += dVergangeneZeit;
 	p_dZeit = dGlobaleZeit;
+}
+
+void Fahrzeug::vZeichnen(Weg* pWeg) const
+{
+	return;
 }
 
 // Fahrzeug auftanken. Standard: Es wird nicht getankt

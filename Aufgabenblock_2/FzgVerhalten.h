@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Losfahren.h"
+
 // Prototypen
 class Weg;
 class Fahrzeug;

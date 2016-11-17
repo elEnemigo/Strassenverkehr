@@ -42,6 +42,15 @@
     <ClCompile Include="FzgParken.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fahrausnahme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Losfahren.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Streckenende.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Fahrrad.h">
@@ -66,6 +75,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FzgParken.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fahrausnahme.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Losfahren.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Streckenende.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimuClient.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LazyAktion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LazyListe.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -13,11 +13,13 @@ FzgParken::~FzgParken()
 
 double FzgParken::dStrecke(Fahrzeug* pFahrzeug, double dT) const
 {
-	if (dGlobaleZeit < p_dStartT)
+	if ((dGlobaleZeit + DBL_EPSILON) < p_dStartT)
 		return 0.0;
 	else
 	{
-		std::cout << "Startzeit erreicht!\n";
-		exit(2);
+		//std::cout << "Startzeit erreicht!\n";
+		throw Losfahren(pFahrzeug, p_pWeg);
+		return 0.0;
+		//exit(2);
 	}
 }

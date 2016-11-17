@@ -147,23 +147,32 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AktivesVO.cpp" />
+    <ClCompile Include="Fahrausnahme.cpp" />
     <ClCompile Include="Fahrrad.cpp" />
     <ClCompile Include="Fahrzeug.cpp" />
     <ClCompile Include="FzgFahren.cpp" />
     <ClCompile Include="FzgParken.cpp" />
     <ClCompile Include="FzgVerhalten.cpp" />
+    <ClCompile Include="Losfahren.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PKW.cpp" />
+    <ClCompile Include="Streckenende.cpp" />
     <ClCompile Include="Weg.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AktivesVO.h" />
+    <ClInclude Include="Fahrausnahme.h" />
     <ClInclude Include="Fahrrad.h" />
     <ClInclude Include="Fahrzeug.h" />
     <ClInclude Include="FzgFahren.h" />
     <ClInclude Include="FzgParken.h" />
     <ClInclude Include="FzgVerhalten.h" />
+    <ClInclude Include="LazyAktion.h" />
+    <ClInclude Include="LazyListe.h" />
+    <ClInclude Include="Losfahren.h" />
     <ClInclude Include="PKW.h" />
+    <ClInclude Include="SimuClient.h" />
+    <ClInclude Include="Streckenende.h" />
     <ClInclude Include="Weg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

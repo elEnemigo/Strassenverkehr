@@ -1,5 +1,6 @@
 #include "Fahrrad.h"
-
+#include "Weg.h"
+#include "SimuClient.h"
 
 // Standardkonstruktor
 Fahrrad::Fahrrad()
@@ -15,6 +16,11 @@ Fahrrad::Fahrrad(std::string Name, double dGeschwind) :
 
 Fahrrad::~Fahrrad()
 {
+}
+
+void Fahrrad::vZeichnen(Weg* pWeg) const
+{
+	bZeichneFahrrad(sGetName(), pWeg->sGetName(), p_dAbschnittStrecke / pWeg->dGetLaenge(), dGeschwindigkeit());
 }
 
 // Geschwindigkeit abhängend von der gefahrenen Strecke berechnen

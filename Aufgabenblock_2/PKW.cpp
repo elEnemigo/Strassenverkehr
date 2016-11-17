@@ -1,6 +1,7 @@
 #include "PKW.h"
 #include "FzgVerhalten.h"
 #include "Weg.h"
+#include "SimuClient.h"
 
 // Standardkonstruktor
 // Verbrauch: 10l/100km
@@ -60,6 +61,11 @@ void PKW::vAbfertigung()
 
 	// Tankinhalt entsprechend reduzieren, mindestens jedoch auf 0 setzen
 	p_dTankinhalt = std::fmax(p_dTankinhalt - ((dHinterlegteStrecke / 100.0) * p_dVerbrauch), 0.0);
+}
+
+void PKW::vZeichnen(Weg* pWeg) const
+{
+	bZeichnePKW(sGetName(), pWeg->sGetName(), p_dAbschnittStrecke / pWeg->dGetLaenge(), dGeschwindigkeit(), p_dTankinhalt);
 }
 
 // PKW um angegebene Menge Tanken

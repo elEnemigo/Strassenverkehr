@@ -1,5 +1,6 @@
 #pragma once
 #include "AktivesVO.h"
+#include "Streckenende.h"
 
 extern double dGlobaleZeit;
 
@@ -34,6 +35,7 @@ public:
 	// Virtuelle Methoden
 	virtual void vAusgabe() const;
 	virtual void vAbfertigung();
+	virtual void vZeichnen(Weg* pWeg) const;
 	virtual double dTanken(double dMenge = 0) const;
 	virtual double dGeschwindigkeit() const;
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;

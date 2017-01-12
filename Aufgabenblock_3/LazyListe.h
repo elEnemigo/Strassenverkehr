@@ -48,7 +48,7 @@ class LazyListe
 
       void push_front( const T einObjekt )
       {
-		  p_ListeAktionen.push_back(new LazyPushFront<T>(einObjekt, &p_ListeObjekte));
+		  p_ListeAktionen.push_front(new LazyPushFront<T>(einObjekt, &p_ListeObjekte));
       bChanged = true;
       return;
       }
@@ -59,6 +59,13 @@ class LazyListe
       bChanged = true;
       return;
       }
+
+	  // Sortiere Objekte. Keine Aktualisierung nötig
+	  template<class Pr2_>
+	  void sort(Pr2_ Pred)
+	  {
+		  p_ListeObjekte.sort(Pred);
+	  }
 
       // Änderungen auf Objektliste übertragen
       void vAktualisieren()

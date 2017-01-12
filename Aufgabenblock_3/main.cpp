@@ -22,6 +22,7 @@ void vAufgabe_4();
 void vAufgabe_5();
 void vAufgabe_6();
 void vAufgabe_6a();
+void vAufgabe_7();
 
 int main()
 {
@@ -34,11 +35,13 @@ int main()
 	
 	//vAufgabe_4();
 
-	vAufgabe_5();
+	//vAufgabe_5();
 
 	//vAufgabe_6();
 
 	//vAufgabe_6a();
+
+	vAufgabe_7();
 
 	system("PAUSE");
 }
@@ -407,4 +410,39 @@ void vAufgabe_6a()
 	for (std::list<int>::iterator it = Test.begin(); it != Test.end(); it++)
 		std::cout << (*it) << ", ";
 	std::cout << std::endl;
+}
+
+void vAufgabe_7()
+{
+	std::cout << "--------------------------- Aufgabe 7 -------------------------------" << std::endl;
+	Weg Einweg("Weg", 100, Autobahn, true);
+	Fahrrad F1("Fahrrad", 20);
+	PKW P1("PKW", 140, 6.0);
+	Fahrzeug FZ1("Fahrzeug", 100);
+
+	F1.vNeueStrecke(&Einweg, 0.5);
+	P1.vNeueStrecke(&Einweg, 1.5);
+
+	dGlobaleZeit = 0.0;
+	bool bHalbzeit = false;
+	double dMaxZeit = 60.0;
+	while (dGlobaleZeit < dMaxZeit + DBL_EPSILON)
+	{
+		// Nach hälfte der Zeit neues Fahrzeug hinzufügen
+		if (dGlobaleZeit >= 3.0 && !bHalbzeit)
+		{
+			//Einweg.vAnnahme(&FZ1, 5.0);
+			FZ1.vNeueStrecke(&Einweg, 5.0);
+			bHalbzeit = true;
+		}
+
+		Einweg.vAbfertigung();
+		std::cout << Einweg << "						T = " << dGlobaleZeit << std::endl;
+
+		if (Einweg.bKeineFahrzeuge())
+			break;
+
+		//vSleep(125);
+		dGlobaleZeit += 0.125;
+	}
 }

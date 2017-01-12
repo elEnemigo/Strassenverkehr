@@ -6,13 +6,14 @@ Weg::Weg()
 	vInitialisierung();
 }
 
-Weg::Weg(std::string sName, double dLaenge, Begrenzung eLimit) :
+Weg::Weg(std::string sName, double dLaenge, Begrenzung eLimit, bool bUeberholverbot) :
 	AktivesVO(sName)
 {
 	vInitialisierung();
 
 	p_dLaenge = dLaenge;
 	p_eLimit = eLimit;
+	p_bUeberholverbot = bUeberholverbot;
 }
 
 Weg::~Weg()
@@ -29,14 +30,14 @@ void Weg::vInitialisierung()
 void Weg::vAnnahme(Fahrzeug* pFahrzeug)
 {
 	if (pFahrzeug)
-		p_pFahrzeuge.push_back(pFahrzeug);
+		p_pFahrzeuge.push_front(pFahrzeug);
 }
 
 // Fahrzeug zum Weg hinzufügen, jedoch erst nach dStartZeit losfahren lassen
 void Weg::vAnnahme(Fahrzeug* pFahrzeug, double dStartZeit)
 {
 	if (pFahrzeug)
-		p_pFahrzeuge.push_front(pFahrzeug);
+		p_pFahrzeuge.push_back(pFahrzeug);
 }
 
 // Fahrzeug vom Weg entfernen
@@ -52,6 +53,11 @@ void Weg::vAbgabe(Fahrzeug* pFahrzeug)
 			p_pFahrzeuge.erase(it);
 			break;
 		}
+}
+
+bool Weg::bKeineFahrzeuge() const
+{
+	return p_pFahrzeuge.empty();
 }
 
 void Weg::vAbfertigung()
@@ -81,10 +87,12 @@ void Weg::vAbfertigung()
 
 	LazyListe<Fahrzeug*>::const_iterator it;
 
+	p_dVirtuelleSchranke = p_dLaenge;
 	for (it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++)
 	{
 		try {
 			(*it)->vAbfertigung();
+			p_dVirtuelleSchranke = (*it)->dGetAbschnittStrecke();
 		}
 		catch (Fahrausnahme& aExc) {
 			aExc.vBearbeiten();
@@ -92,11 +100,26 @@ void Weg::vAbfertigung()
 	}
 
 	p_pFahrzeuge.vAktualisieren();
+
+	// Fahrzeuge nach abgefahrener Strecke sortieren (weitester vorn)
+	p_pFahrzeuge.sort([](Fahrzeug* i, Fahrzeug* j) {
+		return (i->dGetAbschnittStrecke() > j->dGetAbschnittStrecke());
+	});
 }
 
 double Weg::dGetLaenge() const
 {
 	return p_dLaenge;
+}
+
+double Weg::dGetVirtuelleSchranke() const
+{
+	return p_bUeberholverbot ? p_dVirtuelleSchranke : dGetLaenge();
+}
+
+void Weg::dSetVirtuelleSchranke(double Schranke)
+{
+	p_dVirtuelleSchranke = Schranke;
 }
 
 Begrenzung Weg::eGetLimit() const

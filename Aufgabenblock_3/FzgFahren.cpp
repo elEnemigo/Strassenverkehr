@@ -12,13 +12,15 @@ FzgFahren::~FzgFahren()
 {
 }
 
-//double FzgFahren::dStrecke(Fahrzeug* pFahrzeug, double dT) const
-//{
-//	double dStrecke;
-//	double dRestStrecke;
-//
-//	dRestStrecke = p_pWeg->dGetLaenge() - pFahrzeug->p_dAbschnittStrecke;
-//	dStrecke = std::fmin(dRestStrecke, pFahrzeug->dGeschwindigkeit() * dT);
-//
-//	return dRestStrecke;
-//}
+double FzgFahren::dStrecke(Fahrzeug* pFahrzeug, double dT) const
+{
+	double dStrecke;
+	double dRestStrecke;
+
+	dRestStrecke = p_pWeg->dGetVirtuelleSchranke() - pFahrzeug->dGetAbschnittStrecke();
+	dStrecke = std::fmin(dRestStrecke, pFahrzeug->dGeschwindigkeit() * dT);
+
+	p_pWeg->dSetVirtuelleSchranke(pFahrzeug->dGetAbschnittStrecke() + dStrecke);
+
+	return dStrecke;
+}

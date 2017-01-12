@@ -17,7 +17,7 @@ void Losfahren::vBearbeiten()
 	std::cout << "----------Exception----------" << std::endl;
 	std::cout << *p_pFahrzeug << std::endl;
 	std::cout << *p_pWeg << std::endl;
-	std::cout << "Losgefahren!" << std::endl;
+	std::cout << "Losgefahren! t=" << dGlobaleZeit << std::endl;
 	std::cout << "----------noitpecxE----------" << std::endl;
 
 	p_pWeg->vAbgabe(p_pFahrzeug);

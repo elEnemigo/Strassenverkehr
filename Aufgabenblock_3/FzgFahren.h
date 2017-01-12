@@ -7,5 +7,7 @@ class FzgFahren :
 public:
 	FzgFahren(Weg* pWeg);
 	~FzgFahren();
+
+	virtual double dStrecke(Fahrzeug* pFahrzeug, double dT) const;
 };
 

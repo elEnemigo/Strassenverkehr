@@ -145,6 +145,11 @@ double Fahrzeug::dGeschwindigkeit() const
 	return p_dMopsGeschwindigkeit;
 }
 
+double Fahrzeug::dGetTankinhalt() const
+{
+	return -1.0;
+}
+
 // Ausgabefunktion. Diesmal mit streams
 std::ostream& Fahrzeug::ostreamAusgabe(std::ostream& Out) const
 {

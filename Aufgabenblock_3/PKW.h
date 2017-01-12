@@ -20,6 +20,7 @@ public:
 	virtual void vZeichnen(Weg *pWeg) const;
 	virtual double dTanken(double dMenge = 0);
 	virtual double dGeschwindigkeit() const;
+	virtual double dGetTankinhalt() const;
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;
 
 	double dVerbrauch() const;

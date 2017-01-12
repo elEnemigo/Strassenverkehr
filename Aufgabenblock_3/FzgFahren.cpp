@@ -20,7 +20,8 @@ double FzgFahren::dStrecke(Fahrzeug* pFahrzeug, double dT) const
 	dRestStrecke = p_pWeg->dGetVirtuelleSchranke() - pFahrzeug->dGetAbschnittStrecke();
 	dStrecke = std::fmin(dRestStrecke, pFahrzeug->dGeschwindigkeit() * dT);
 
-	p_pWeg->dSetVirtuelleSchranke(pFahrzeug->dGetAbschnittStrecke() + dStrecke);
+	if (std::abs(pFahrzeug->dGetTankinhalt()) > 0.0)
+		p_pWeg->dSetVirtuelleSchranke(pFahrzeug->dGetAbschnittStrecke() + dStrecke);
 
 	return dStrecke;
 }

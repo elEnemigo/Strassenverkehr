@@ -99,6 +99,11 @@ double PKW::dVerbrauch() const
 	return p_dVerbrauch * (p_dGesamtStrecke / 100.0);
 }
 
+double PKW::dGetTankinhalt() const
+{
+	return p_dTankinhalt;
+}
+
 // Ausgabefunktion. Diesmal mit streams
 std::ostream& PKW::ostreamAusgabe(std::ostream& Out) const
 {

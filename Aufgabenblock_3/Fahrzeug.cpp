@@ -3,6 +3,7 @@
 #include "FzgVerhalten.h"
 #include "FzgFahren.h"
 #include "FzgParken.h"
+#include "SimuClient.h"
 
 // Standard Klasseninitialisierungsfunktion
 void Fahrzeug::vInitialisierung()
@@ -68,6 +69,9 @@ void Fahrzeug::vNeueStrecke(Weg* pWeg)
 // Fahrzeug zum Weg hinzufügen, jedoch erst nach dStartZeit losfahren lassen
 void Fahrzeug::vNeueStrecke(Weg* pWeg, double dStartzeit)
 {
+	if (dStartzeit <= (0.0 + DBL_EPSILON))
+		return vNeueStrecke(pWeg);
+
 	if (p_pVerhalten)
 		delete p_pVerhalten;
 	p_dAbschnittStrecke = 0.0;
@@ -128,13 +132,13 @@ void Fahrzeug::vAbfertigung()
 	p_dZeit = dGlobaleZeit;
 }
 
-void Fahrzeug::vZeichnen(Weg* pWeg) const
+void Fahrzeug::vZeichnen(const Weg* pWeg) const
 {
-	return;
+	bZeichnePKW(sGetName(), pWeg->sGetName(), p_dAbschnittStrecke / pWeg->dGetLaenge(), dGeschwindigkeit(), 0.0);
 }
 
 // Fahrzeug auftanken. Standard: Es wird nicht getankt
-double Fahrzeug::dTanken(double dMenge) const
+double Fahrzeug::dTanken(double dMenge)
 {
 	return 0.0;
 }

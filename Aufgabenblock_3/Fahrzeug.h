@@ -35,8 +35,8 @@ public:
 	// Virtuelle Methoden
 	virtual void vAusgabe() const;
 	virtual void vAbfertigung();
-	virtual void vZeichnen(Weg* pWeg) const;
-	virtual double dTanken(double dMenge = 0) const;
+	virtual void vZeichnen(const Weg* pWeg) const;
+	virtual double dTanken(double dMenge = 0);
 	virtual double dGeschwindigkeit() const;
 	virtual double dGetTankinhalt() const;
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;

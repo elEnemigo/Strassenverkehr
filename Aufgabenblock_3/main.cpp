@@ -4,6 +4,7 @@
 #include "PKW.h"
 #include "SimuClient.h"
 #include "LazyListe.h"
+#include "Kreuzung.h"
 
 #include <vector>
 #include <random>
@@ -23,6 +24,7 @@ void vAufgabe_5();
 void vAufgabe_6();
 void vAufgabe_6a();
 void vAufgabe_7();
+void vAufgabe_8();
 
 int main()
 {
@@ -42,6 +44,8 @@ int main()
 	//vAufgabe_6a();
 
 	vAufgabe_7();
+
+	vAufgabe_8();
 
 	system("PAUSE");
 }
@@ -421,7 +425,7 @@ void vAufgabe_7()
 	Fahrzeug FZ1("Fahrzeug", 100);
 
 	F1.vNeueStrecke(&Einweg, 0.5);
-	P1.vNeueStrecke(&Einweg, 1.5);
+	P1.vNeueStrecke(&Einweg, 5.5);
 
 	dGlobaleZeit = 0.0;
 	bool bHalbzeit = false;
@@ -445,4 +449,76 @@ void vAufgabe_7()
 		//vSleep(125);
 		dGlobaleZeit += 0.125;
 	}
+}
+
+void vAufgabe_8()
+{
+	std::cout << "--------------------------- Aufgabe 8 -------------------------------" << std::endl;
+	Kreuzung Kr1("Kr1"), Kr2("Kr2"), Kr3("Kr3"), Kr4("Kr4");
+
+	// Kreuzungen
+	Kr1.vVerbinde("W12", "W21", &Kr2, 40.0, Innerorts);
+	Kr2.vVerbinde("W23a", "W32a", &Kr3, 115.0, Autobahn, false);
+	Kr2.vVerbinde("W23b", "W32b", &Kr3, 40.0, Innerorts);
+	Kr2.vVerbinde("W24", "W42", &Kr4, 55.0, Innerorts);
+	Kr3.vVerbinde("W34", "W43", &Kr4, 85.0, Autobahn, false);
+	Kr4.vVerbinde("W44a", "W44b", &Kr4, 130.0, Land, false);
+	Kr2.vSetTankstelle(1000.0);
+
+	// Fahrzeuge
+	Fahrzeug F1("F1", 80.0);
+	PKW P1("P1", 200.0, 8.0, 65.0);
+	PKW P2("P2", 120.0, 6.0);
+	Fahrrad F2("F2", 25);
+	PKW P3("P3", 130, 7.0);
+	Kr1.vAnnahme(&F1, 0.0);
+	Kr1.vAnnahme(&P1, 2.5);
+	Kr1.vAnnahme(&P2, 1.0);
+	Kr1.vAnnahme(&F2, 2.0);
+	Kr1.vAnnahme(&P3, 0.0);
+
+	dGlobaleZeit = 0.0;
+	bInitialisiereGrafik(1024, 768);
+	int pos1[4] = { 680, 40, 680, 300 };
+	int pos2[12] = {680, 300, 850, 300, 970, 390, 970, 500, 850, 570, 680, 570};
+	int pos3[4] = {680, 300, 680, 570};
+	int pos4[4] = {680, 300, 320, 300};
+	int pos5[10] = {680, 570, 500, 570, 350, 510, 320, 420, 320, 300};
+	int pos6[14] = {320, 300, 320, 150, 200, 60, 80, 90, 70, 250, 170, 300, 320, 300};
+	bZeichneStrasse("W12", "W21", 40, 2, pos1);
+	bZeichneStrasse("W23a", "W32a", 115, 6, pos2);
+	bZeichneStrasse("W23b", "W32b", 40, 2, pos3);
+	bZeichneStrasse("W24", "W42", 50, 2, pos4);
+	bZeichneStrasse("W34", "W43", 85, 5, pos5);
+	bZeichneStrasse("W44a", "W44b", 130, 7, pos6);
+
+	bZeichneKreuzung(680, 40);
+	bZeichneKreuzung(680, 300);
+	bZeichneKreuzung(680, 570);
+	bZeichneKreuzung(320, 300);
+
+	while (dGlobaleZeit < 6.0 + DBL_EPSILON)
+	{
+		vSetzeZeit(dGlobaleZeit);
+
+		Kr1.vAbfertigung();
+		Kr2.vAbfertigung();
+		Kr3.vAbfertigung();
+		Kr4.vAbfertigung();
+
+		Kr1.vZeichne();
+		Kr2.vZeichne();
+		Kr3.vZeichne();
+		Kr4.vZeichne();
+
+		std::cout << "Kr1: " << Kr1 << "						T = " << dGlobaleZeit << std::endl;
+		std::cout << "Kr2: " << Kr2;
+		std::cout << "Kr3: " << Kr3;
+		std::cout << "Kr4: " << Kr4;
+
+		vSleep(33);
+		dGlobaleZeit += 0.033;
+	}
+
+	vBeendeGrafik();
 }

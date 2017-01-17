@@ -24,6 +24,9 @@ void Weg::vInitialisierung()
 {
 	p_dLaenge = 0.0;
 	p_eLimit = Autobahn;
+	p_bUeberholverbot = true;
+	p_pRueckweg = nullptr;
+	p_pNaechsteKreuzung = nullptr;
 }
 
 // Fahrzeug zum Weg hinzufügen
@@ -87,6 +90,11 @@ void Weg::vAbfertigung()
 
 	LazyListe<Fahrzeug*>::const_iterator it;
 
+	// Fahrzeuge nach abgefahrener Strecke sortieren (weitester vorn)
+	p_pFahrzeuge.sort([](Fahrzeug* i, Fahrzeug* j) {
+		return (i->dGetAbschnittStrecke() > j->dGetAbschnittStrecke());
+	});
+
 	p_dVirtuelleSchranke = p_dLaenge;
 	for (it = p_pFahrzeuge.begin(); it != p_pFahrzeuge.end(); it++)
 	{
@@ -100,11 +108,12 @@ void Weg::vAbfertigung()
 	}
 
 	p_pFahrzeuge.vAktualisieren();
+}
 
-	// Fahrzeuge nach abgefahrener Strecke sortieren (weitester vorn)
-	p_pFahrzeuge.sort([](Fahrzeug* i, Fahrzeug* j) {
-		return (i->dGetAbschnittStrecke() > j->dGetAbschnittStrecke());
-	});
+void Weg::vZeichne() const
+{
+	for (Fahrzeug* F : p_pFahrzeuge)
+		F->vZeichnen(this);
 }
 
 double Weg::dGetLaenge() const
@@ -122,9 +131,29 @@ void Weg::dSetVirtuelleSchranke(double Schranke)
 	p_dVirtuelleSchranke = Schranke;
 }
 
+void Weg::vSetRueckweg(Weg* pWeg)
+{
+	p_pRueckweg = pWeg;
+}
+
+void Weg::vSetNaechsteKreuzung(Kreuzung* pKreuzung)
+{
+	p_pNaechsteKreuzung = pKreuzung;
+}
+
 Begrenzung Weg::eGetLimit() const
 {
 	return p_eLimit;
+}
+
+Weg* Weg::pGetRueckweg() const
+{
+	return p_pRueckweg;
+}
+
+Kreuzung* Weg::pGetNaechsteKreuzung() const
+{
+	return p_pNaechsteKreuzung;
 }
 
 std::ostream& Weg::ostreamAusgabe(std::ostream& Out) const

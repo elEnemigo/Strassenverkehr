@@ -85,6 +85,9 @@ double PKW::dTanken(double dMenge)
 // Aktuelle Geschwindigkeit
 double PKW::dGeschwindigkeit() const
 {
+	if (!p_pVerhalten)
+		return 0.0;
+
 	Begrenzung eLim = p_pVerhalten->pGetWeg()->eGetLimit();
 
 	if (eLim == Autobahn)

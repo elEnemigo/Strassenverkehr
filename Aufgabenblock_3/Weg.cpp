@@ -170,3 +170,16 @@ std::ostream& Weg::ostreamAusgabe(std::ostream& Out) const
 
 	return Out;
 }
+
+std::istream& Weg::istreamEingabe(std::istream& In)
+{
+	double Lim;
+	AktivesVO::istreamEingabe(In);
+
+	In >> p_dLaenge;
+	In >> Lim;
+	p_eLimit = Lim == 1 ? Innerorts : (Lim == 2 ? Land : Autobahn);
+	In >> p_bUeberholverbot;
+
+	return In;
+}

@@ -49,5 +49,6 @@ public:
 	bool bKeineFahrzeuge() const;
 	virtual void vAbfertigung();
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;
+	virtual std::istream& istreamEingabe(std::istream& In);
 };
 

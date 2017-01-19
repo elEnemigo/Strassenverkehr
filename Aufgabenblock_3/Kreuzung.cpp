@@ -122,8 +122,19 @@ std::ostream& Kreuzung::ostreamAusgabe(std::ostream& Out) const
 {
 	AktivesVO::ostreamAusgabe(Out);
 
+	Out << p_dTankstelle << "	";
+
 	for (Weg* W : p_pWege)
 		Out << *W << std::endl;
 
 	return Out;
+}
+
+std::istream& Kreuzung::istreamEingabe(std::istream& In)
+{
+	AktivesVO::istreamEingabe(In);
+
+	In >> p_dTankstelle;
+
+	return In;
 }

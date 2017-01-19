@@ -57,6 +57,12 @@
     <ClInclude Include="Weg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Kreuzung.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Welt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AktivesVO.cpp">
@@ -95,5 +101,16 @@
     <ClCompile Include="Weg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Kreuzung.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Welt.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Simu.dat" />
+    <None Include="SimuDisplay.dat" />
+    <None Include="VO.dat" />
   </ItemGroup>
 </Project>

@@ -170,6 +170,25 @@ std::ostream& Fahrzeug::ostreamAusgabe(std::ostream& Out) const
 	return Out;
 }
 
+std::istream& Fahrzeug::istreamEingabe(std::istream& In)
+{
+	AktivesVO::istreamEingabe(In);
+
+	In >> p_dMopsGeschwindigkeit;
+
+	//std::string tmp;
+	//std::smatch m;
+	//std::regex e("\\b[\\d]+\\b");
+	//std::getline(In, tmp);
+	//if (std::regex_search(tmp, m, e))
+	//{
+	//	std::smatch::iterator it = m.begin();
+	//	p_dMopsGeschwindigkeit = std::stod((*it));
+	//}
+
+	return In;
+}
+
 
 // Überladene Operatoren
 bool Fahrzeug::operator<(const Fahrzeug& Other)

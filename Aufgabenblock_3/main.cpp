@@ -5,9 +5,11 @@
 #include "SimuClient.h"
 #include "LazyListe.h"
 #include "Kreuzung.h"
+#include "Welt.h"
 
 #include <vector>
 #include <random>
+#include <fstream>
 
 #pragma comment(lib, "SimuClient.lib")
 
@@ -25,6 +27,8 @@ void vAufgabe_6();
 void vAufgabe_6a();
 void vAufgabe_7();
 void vAufgabe_8();
+void vAufgabe_9a();
+void vAufgabe_9b();
 
 int main()
 {
@@ -43,9 +47,13 @@ int main()
 
 	//vAufgabe_6a();
 
-	vAufgabe_7();
+	//vAufgabe_7();
 
-	vAufgabe_8();
+	//vAufgabe_8();
+
+	vAufgabe_9a();
+
+	vAufgabe_9b();
 
 	system("PAUSE");
 }
@@ -521,4 +529,87 @@ void vAufgabe_8()
 	}
 
 	vBeendeGrafik();
+}
+
+void vAufgabe_9a()
+{
+	std::cout << "--------------------------- Aufgabe 9a -------------------------------" << std::endl;
+
+	// Locals
+	std::ifstream VOFile;
+	PKW P1;
+	Fahrrad FR1;
+	Kreuzung K1;
+	// Kreuzung K2("Kr1"); // Zum Testen der Exception
+	AktivesVO* pTest = nullptr;
+
+	// Startup
+	VOFile.open("VO.dat", std::ifstream::in);
+	if (!VOFile)
+	{
+		std:cerr << "Failed to Open File!" << std::endl;
+		return;
+	}
+
+	// Einlesen
+	try {
+		VOFile >> P1;
+		VOFile >> FR1;
+		VOFile >> K1;
+	} catch (std::string& Str){
+		std::cerr << Str << std::endl;
+	}
+
+	// Ausgeben
+	std::cout << P1 << std::endl;
+	std::cout << FR1 << std::endl;
+	std::cout << K1 << std::endl;
+
+	// Map testen
+	bool bExc = false;
+	try {
+		pTest = AktivesVO::ptObjekt("Rennrad");
+	}
+	catch (std::string& Str) {
+		std::cerr << Str << std::endl;
+
+		bExc = true;
+	}
+	if (!bExc)
+		std::cout << "Gefunden: " << *pTest << std::endl;
+
+	// Cleanup
+	VOFile.close();
+}
+
+void vAufgabe_9b()
+{
+	std::cout << "--------------------------- Aufgabe 9b -------------------------------" << std::endl;
+
+	// Locals
+	std::ifstream VOFile;
+	Welt NeueWelt;
+
+	// Startup
+	VOFile.open("Simu.dat", std::ifstream::in);
+	if (!VOFile)
+	{
+	std:cerr << "Failed to Open File!" << std::endl;
+		return;
+	}
+
+	// Einlesen
+	try {
+		NeueWelt.vEinlesen(VOFile);
+	}
+	catch (std::string& Str) {
+		std::cerr << Str << std::endl;
+	}
+
+	// Simulieren
+	for (int i = 0; i < 400; i++)
+		NeueWelt.vSimulation(0.033);
+
+	// Cleanup
+	VOFile.close();
 }

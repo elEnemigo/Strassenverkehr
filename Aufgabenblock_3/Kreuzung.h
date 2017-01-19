@@ -27,6 +27,7 @@ public:
 	Weg* ptZufaelligerWeg(Weg* pWeg) const;
 
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;
+	virtual std::istream& istreamEingabe(std::istream& In);
 
 private:
 	std::list<Weg*> p_pWege;	// Alle von der Kreuzung wegführenden Wege

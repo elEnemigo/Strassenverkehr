@@ -161,6 +161,7 @@
     <ClInclude Include="SimuClient.h" />
     <ClInclude Include="Streckenende.h" />
     <ClInclude Include="Weg.h" />
+    <ClInclude Include="Welt.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AktivesVO.cpp" />
@@ -176,6 +177,12 @@
     <ClCompile Include="PKW.cpp" />
     <ClCompile Include="Streckenende.cpp" />
     <ClCompile Include="Weg.cpp" />
+    <ClCompile Include="Welt.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Simu.dat" />
+    <None Include="SimuDisplay.dat" />
+    <None Include="VO.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -22,6 +22,7 @@ public:
 	virtual double dGeschwindigkeit() const;
 	virtual double dGetTankinhalt() const;
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;
+	virtual std::istream& istreamEingabe(std::istream& In);
 
 	double dVerbrauch() const;
 };

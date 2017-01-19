@@ -125,3 +125,12 @@ std::ostream& PKW::ostreamAusgabe(std::ostream& Out) const
 
 	return Out;
 }
+
+std::istream& PKW::istreamEingabe(std::istream& In)
+{
+	Fahrzeug::istreamEingabe(In);
+
+	In >> p_dVerbrauch >> p_dTankvolumen;
+
+	return In;
+}

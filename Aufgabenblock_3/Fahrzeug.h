@@ -2,8 +2,6 @@
 #include "AktivesVO.h"
 #include "Streckenende.h"
 
-extern double dGlobaleZeit;
-
 // Prototypen
 class FzgVerhalten;
 class Weg;
@@ -40,6 +38,7 @@ public:
 	virtual double dGeschwindigkeit() const;
 	virtual double dGetTankinhalt() const;
 	virtual std::ostream& ostreamAusgabe(std::ostream& Out) const;
+	virtual std::istream& istreamEingabe(std::istream& In);
 
 	// Überladene Operatoren
 	bool operator<(const Fahrzeug& Other);

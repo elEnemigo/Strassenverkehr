@@ -29,6 +29,7 @@ void vAufgabe_7();
 void vAufgabe_8();
 void vAufgabe_9a();
 void vAufgabe_9b();
+void vAufgabe_9c();
 
 int main()
 {
@@ -54,6 +55,8 @@ int main()
 	vAufgabe_9a();
 
 	vAufgabe_9b();
+
+	vAufgabe_9c();
 
 	system("PAUSE");
 }
@@ -601,6 +604,38 @@ void vAufgabe_9b()
 	// Einlesen
 	try {
 		NeueWelt.vEinlesen(VOFile);
+	}
+	catch (std::string& Str) {
+		std::cerr << Str << std::endl;
+	}
+
+	// Simulieren
+	for (int i = 0; i < 40; i++)
+		NeueWelt.vSimulation(0.033);
+
+	// Cleanup
+	VOFile.close();
+}
+
+void vAufgabe_9c()
+{
+	std::cout << "--------------------------- Aufgabe 9c -------------------------------" << std::endl;
+
+	// Locals
+	std::ifstream VOFile;
+	Welt NeueWelt;
+
+	// Startup
+	VOFile.open("SimuDisplay.dat", std::ifstream::in);
+	if (!VOFile)
+	{
+	std:cerr << "Failed to Open File!" << std::endl;
+		return;
+	}
+
+	// Einlesen
+	try {
+		NeueWelt.vEinlesenMitGrafik(VOFile);
 	}
 	catch (std::string& Str) {
 		std::cerr << Str << std::endl;

@@ -4,11 +4,13 @@
 #include <list>
 
 class Kreuzung;
+class Fahrzeug;
 
 class Welt
 {
 private:
 	std::list<Kreuzung*> p_pKreuzungen;
+	std::list<Fahrzeug*> p_pFahrzeuge;
 	bool p_bGrafik;
 
 public:

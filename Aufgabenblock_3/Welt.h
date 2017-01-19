@@ -9,7 +9,6 @@ class Welt
 {
 private:
 	std::list<Kreuzung*> p_pKreuzungen;
-	double p_dZeit;
 	bool p_bGrafik;
 
 public:

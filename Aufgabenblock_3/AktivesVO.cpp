@@ -114,6 +114,9 @@ std::istream& AktivesVO::istreamEingabe(std::istream& In)
 		throw std::string("AAAH");
 	else
 	{
+		if (In.peek() == '\n')
+			throw std::string("Zu wenige Argumente für AktivesVO");
+
 		In >> p_sName;
 		std::pair<std::map<std::string, AktivesVO*>::const_iterator, bool> it;
 		it = p_mObjekte.insert(std::pair<std::string, AktivesVO*>(p_sName, this));

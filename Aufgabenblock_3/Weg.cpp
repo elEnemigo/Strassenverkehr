@@ -177,9 +177,15 @@ std::istream& Weg::istreamEingabe(std::istream& In)
 	double Lim;
 	AktivesVO::istreamEingabe(In);
 
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für Weg");
 	In >> p_dLaenge;
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für Weg");
 	In >> Lim;
 	p_eLimit = Lim == 1 ? Innerorts : (Lim == 2 ? Land : Autobahn);
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für Weg");
 	In >> p_bUeberholverbot;
 
 	return In;

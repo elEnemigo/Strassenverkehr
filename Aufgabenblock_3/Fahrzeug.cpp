@@ -174,6 +174,8 @@ std::istream& Fahrzeug::istreamEingabe(std::istream& In)
 {
 	AktivesVO::istreamEingabe(In);
 
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für Fahrzeug");
 	In >> p_dMopsGeschwindigkeit;
 
 	//std::string tmp;

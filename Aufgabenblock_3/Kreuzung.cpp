@@ -134,6 +134,8 @@ std::istream& Kreuzung::istreamEingabe(std::istream& In)
 {
 	AktivesVO::istreamEingabe(In);
 
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für Kreuzung");
 	In >> p_dTankstelle;
 
 	return In;

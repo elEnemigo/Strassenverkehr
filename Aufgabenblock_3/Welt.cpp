@@ -5,12 +5,24 @@
 #include "Fahrrad.h"
 #include "SimuClient.h"
 
+// Hilfsfunktion
+void CheckInput(std::istream& In, bool Last = false)
+{
+	if (In.fail() && !In.eof())
+		throw std::string("Falscher Datentyp!");
+
+	if (!Last && (In.peek() == '\n'))
+		throw std::string("Fehlende Argumente!");
+
+	if (Last && (In.peek() != '\n'))
+		throw std::string("Zu viele Argumente!");
+}
+
 Welt::Welt() :
 	p_bGrafik(false)
 {
 	dGlobaleZeit = 0.0;
 }
-
 
 Welt::~Welt()
 {
@@ -37,7 +49,8 @@ void Welt::vEinlesen(std::istream& In)
 		{
 			Kreuzung* pK = new Kreuzung;
 
-			In >> *pK;
+			In >> *pK; CheckInput(In, true);
+
 			p_pKreuzungen.push_back(pK);
 		}
 		else if (sType == "STRASSE")
@@ -49,7 +62,13 @@ void Welt::vEinlesen(std::istream& In)
 			bool bUeberhol;
 			Begrenzung Lim;
 
-			In >> sQuellK >> sZielK >> sHinW >> sRuckW >> dLang >> dGeschwind >> bUeberhol;
+			In >> sQuellK; CheckInput(In);
+			In >> sZielK; CheckInput(In);
+			In >> sHinW; CheckInput(In);
+			In >> sRuckW; CheckInput(In);
+			In >> dLang; CheckInput(In);
+			In >> dGeschwind; CheckInput(In);
+			In >> bUeberhol; CheckInput(In, true);
 
 			pQuellK = (Kreuzung*)AktivesVO::ptObjekt(sQuellK);
 			pZielK = (Kreuzung*)AktivesVO::ptObjekt(sZielK);
@@ -63,9 +82,9 @@ void Welt::vEinlesen(std::istream& In)
 			std::string sStart;
 			double dStart;
 
-			In >> *pP;
-			In >> sStart;
-			In >> dStart;
+			In >> *pP; CheckInput(In);
+			In >> sStart; CheckInput(In);
+			In >> dStart; CheckInput(In, true);
 
 			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
 
@@ -80,9 +99,9 @@ void Welt::vEinlesen(std::istream& In)
 			std::string sStart;
 			double dStart;
 
-			In >> *pP;
-			In >> sStart;
-			In >> dStart;
+			In >> *pP; CheckInput(In);
+			In >> sStart; CheckInput(In);
+			In >> dStart; CheckInput(In, true);
 
 			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
 

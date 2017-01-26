@@ -130,7 +130,13 @@ std::istream& PKW::istreamEingabe(std::istream& In)
 {
 	Fahrzeug::istreamEingabe(In);
 
-	In >> p_dVerbrauch >> p_dTankvolumen;
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für PKW");
+	In >> p_dVerbrauch;
+
+	if (In.peek() == '\n')
+		throw std::string("Zu wenige Argumente für PKW"); 
+	In >> p_dTankvolumen;
 	p_dTankinhalt = p_dTankvolumen;
 
 	return In;

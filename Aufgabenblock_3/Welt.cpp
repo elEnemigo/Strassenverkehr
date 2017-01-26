@@ -70,8 +70,8 @@ void Welt::vEinlesen(std::istream& In)
 			In >> dGeschwind; CheckInput(In);
 			In >> bUeberhol; CheckInput(In, true);
 
-			pQuellK = (Kreuzung*)AktivesVO::ptObjekt(sQuellK);
-			pZielK = (Kreuzung*)AktivesVO::ptObjekt(sZielK);
+			pQuellK = AktivesVO::ptObjekt<Kreuzung*>(sQuellK);
+			pZielK = AktivesVO::ptObjekt<Kreuzung*>(sZielK);
 			Lim = dGeschwind == 1 ? Innerorts : (dGeschwind == 2 ? Land : Autobahn);
 			pQuellK->vVerbinde(sHinW, sRuckW, pZielK, dLang, Lim, bUeberhol);
 		}
@@ -86,7 +86,7 @@ void Welt::vEinlesen(std::istream& In)
 			In >> sStart; CheckInput(In);
 			In >> dStart; CheckInput(In, true);
 
-			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
+			pStart = AktivesVO::ptObjekt<Kreuzung*>(sStart);
 
 			pStart->vAnnahme(pP, dStart);
 
@@ -103,7 +103,7 @@ void Welt::vEinlesen(std::istream& In)
 			In >> sStart; CheckInput(In);
 			In >> dStart; CheckInput(In, true);
 
-			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
+			pStart = AktivesVO::ptObjekt<Kreuzung*>(sStart);
 
 			pStart->vAnnahme(pP, dStart);
 
@@ -148,8 +148,8 @@ void Welt::vEinlesenMitGrafik(std::istream& In)
 
 			In >> sQuellK >> sZielK >> sHinW >> sRuckW >> dLang >> dGeschwind >> bUeberhol;
 
-			pQuellK = (Kreuzung*)AktivesVO::ptObjekt(sQuellK);
-			pZielK = (Kreuzung*)AktivesVO::ptObjekt(sZielK);
+			pQuellK = AktivesVO::ptObjekt<Kreuzung*>(sQuellK);
+			pZielK = AktivesVO::ptObjekt<Kreuzung*>(sZielK);
 			Lim = dGeschwind == 1 ? Innerorts : (dGeschwind == 2 ? Land : Autobahn);
 			pQuellK->vVerbinde(sHinW, sRuckW, pZielK, dLang, Lim, bUeberhol);
 
@@ -176,7 +176,7 @@ void Welt::vEinlesenMitGrafik(std::istream& In)
 			In >> sStart;
 			In >> dStart;
 
-			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
+			pStart = AktivesVO::ptObjekt<Kreuzung*>(sStart);
 
 			pStart->vAnnahme(pP, dStart);
 
@@ -193,7 +193,7 @@ void Welt::vEinlesenMitGrafik(std::istream& In)
 			In >> sStart;
 			In >> dStart;
 
-			pStart = (Kreuzung*)AktivesVO::ptObjekt(sStart);
+			pStart = AktivesVO::ptObjekt<Kreuzung*>(sStart);
 
 			pStart->vAnnahme(pP, dStart);
 

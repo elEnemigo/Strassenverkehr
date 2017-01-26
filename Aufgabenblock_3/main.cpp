@@ -544,7 +544,7 @@ void vAufgabe_9a()
 	Fahrrad FR1;
 	Kreuzung K1;
 	// Kreuzung K2("Kr1"); // Zum Testen der Exception
-	AktivesVO* pTest = nullptr;
+	Fahrrad* pTest = nullptr;
 
 	// Startup
 	VOFile.open("VO.dat", std::ifstream::in);
@@ -571,7 +571,7 @@ void vAufgabe_9a()
 	// Map testen
 	bool bExc = false;
 	try {
-		pTest = AktivesVO::ptObjekt("Rennrad");
+		pTest = AktivesVO::ptObjekt<Fahrrad*>("Rennrad");
 	}
 	catch (std::string& Str) {
 		std::cerr << Str << std::endl;

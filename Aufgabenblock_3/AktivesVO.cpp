@@ -36,7 +36,7 @@ AktivesVO::AktivesVO(std::string sName)
 	std::pair<std::map<std::string, AktivesVO*>::const_iterator, bool> it;
 	it = p_mObjekte.insert(std::pair<std::string, AktivesVO*>(sName, this));
 	if (!it.second)
-		throw std::string("Key existiert bereits!");
+		throw std::string("Key '" + sName + "' existiert bereits!");
 }
 
 AktivesVO::~AktivesVO()
@@ -60,18 +60,7 @@ std::string AktivesVO::sGetName() const
 	return p_sName;
 }
 
-AktivesVO* AktivesVO::ptObjekt(std::string sName)
-{
-	std::map<std::string, AktivesVO*>::const_iterator it;
 
-	it = p_mObjekte.find(sName);
-
-	if (it != p_mObjekte.end())
-		return it->second;
-	
-	throw std::string("Key exisitiert nicht!");
-	return nullptr;
-}
 
 void AktivesVO::vAusgabe() const
 {
@@ -121,7 +110,7 @@ std::istream& AktivesVO::istreamEingabe(std::istream& In)
 		std::pair<std::map<std::string, AktivesVO*>::const_iterator, bool> it;
 		it = p_mObjekte.insert(std::pair<std::string, AktivesVO*>(p_sName, this));
 		if (!it.second)
-			throw std::string("Key existiert bereits!");
+			throw std::string("Reading: Key '" + p_sName + "' existiert bereits!");
 
 		//std::string tmp;
 		//std::smatch m;

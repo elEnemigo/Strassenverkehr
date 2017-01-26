@@ -111,7 +111,7 @@ std::ostream& AktivesVO::ostreamAusgabe(std::ostream& Out) const
 std::istream& AktivesVO::istreamEingabe(std::istream& In)
 {
 	if (!p_sName.empty())
-		throw "AAAH";
+		throw std::string("AAAH");
 	else
 	{
 		In >> p_sName;

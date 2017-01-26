@@ -100,7 +100,8 @@ void Weg::vAbfertigung()
 	{
 		try {
 			(*it)->vAbfertigung();
-			p_dVirtuelleSchranke = (*it)->dGetAbschnittStrecke();
+			if ((*it)->dGetTankinhalt() > 0.0 || (*it)->dGetTankinhalt() < 0.0)
+				p_dVirtuelleSchranke = (*it)->dGetAbschnittStrecke();
 		}
 		catch (Fahrausnahme& aExc) {
 			aExc.vBearbeiten();

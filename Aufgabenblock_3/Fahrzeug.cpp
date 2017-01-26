@@ -134,7 +134,7 @@ void Fahrzeug::vAbfertigung()
 
 void Fahrzeug::vZeichnen(const Weg* pWeg) const
 {
-	bZeichnePKW(sGetName(), pWeg->sGetName(), p_dAbschnittStrecke / pWeg->dGetLaenge(), dGeschwindigkeit(), 0.0);
+	bZeichnePKW(sGetName(), pWeg->sGetName(), p_dAbschnittStrecke / pWeg->dGetLaenge(), dGeschwindigkeit(), std::fmax(0.0, dGetTankinhalt()));
 }
 
 // Fahrzeug auftanken. Standard: Es wird nicht getankt

@@ -550,7 +550,7 @@ void vAufgabe_9a()
 	VOFile.open("VO.dat", std::ifstream::in);
 	if (!VOFile)
 	{
-		std:cerr << "Failed to Open File!" << std::endl;
+		std::cerr << "Failed to Open File!" << std::endl;
 		return;
 	}
 
@@ -597,7 +597,7 @@ void vAufgabe_9b()
 	VOFile.open("Simu.dat", std::ifstream::in);
 	if (!VOFile)
 	{
-	std:cerr << "Failed to Open File!" << std::endl;
+		std::cerr << "Failed to Open File!" << std::endl;
 		return;
 	}
 
@@ -629,7 +629,7 @@ void vAufgabe_9c()
 	VOFile.open("SimuDisplay.dat", std::ifstream::in);
 	if (!VOFile)
 	{
-	std:cerr << "Failed to Open File!" << std::endl;
+		std::cerr << "Failed to Open File!" << std::endl;
 		return;
 	}
 
